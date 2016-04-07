@@ -16,4 +16,10 @@ public abstract class JugadaPrimitiva {
 	public void setNombre(String nombre){
 		this.nombre = nombre;
 	}
+	public int getPotencia(){
+		return potencia;
+	}
+	public void setPotencia(int potencia){
+		this.potencia = potencia;
+	}
 }
