@@ -1,8 +1,8 @@
 package api.futbol.jugadasPrimitivas;
 
 public abstract class JugadaPrimitiva {
-	private String nombre;
-	private int potencia;
+	protected String nombre;
+	protected int potencia;
 	
 	public JugadaPrimitiva(String nombre,int potencia){
 		this.nombre = nombre;

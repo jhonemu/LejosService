@@ -12,7 +12,7 @@ public class InfJugador {
 	@Path("/consulta")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String consultar(){
-		return "holi";
+		return Primitivsjugadas.correr.getNombre();
 	}
 
 }
