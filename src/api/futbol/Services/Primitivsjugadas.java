@@ -21,8 +21,8 @@ public class Primitivsjugadas {
 	public static Adelante correr = new Adelante("Correr",1440);
 	public static Izquierda izquierda = new Izquierda("Girar a la izquierda",720);
 	public static Derecha derecha = new Derecha("Girar a la derecha",720);
-	public static Chutar chutar = new Chutar("Chute",720);
-	public static Chutar patear  = new Chutar("Patear",1440);
+	//public static Chutar chutar = new Chutar("Chute",720);
+	//public static Chutar patear  = new Chutar("Patear",1440);
 	public static Atras atras = new Atras("Ir atras",720);
 	public static Atras ratras = new Atras("Correr atras",1440);
 	
@@ -74,18 +74,18 @@ public class Primitivsjugadas {
 			}
 		}
 		else if(jugada.equals("Chute")){
-			try{
+			/*try{
 				jug.put(chutar.getNombre(), chutar.getPotencia());
 			} catch (JSONException e) {
 				e.printStackTrace();
-			}
+			}*/
 		}
 		else if(jugada.equals("Patear")){
-			try{
+			/*try{
 				jug.put(patear.getNombre(), patear.getPotencia());
 			} catch (JSONException e) {
 				e.printStackTrace();
-			}
+			}*/
 		}
 		return jug.toString();
 	}
