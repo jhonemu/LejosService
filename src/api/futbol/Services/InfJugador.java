@@ -1,7 +1,6 @@
 package api.futbol.Services;
 
 import java.util.ArrayList;
-import java.util.Hashtable;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
