@@ -31,7 +31,7 @@ public class JugadaComplejaTiroLibre extends JugadaCompleja {
  	public String identificarJugada() {
 		return "Jugada Tiro Libre";
 	}
-	private String getPotenciachute(){
+	public String getPotenciachute(){
 		if(potenciachute>0 && potenciachute <=1){
 			return "chute suave";
 		}
@@ -40,7 +40,7 @@ public class JugadaComplejaTiroLibre extends JugadaCompleja {
 			return"chute fuerte";
 		}
 	}
-	private String getEfecto(){
+	public String getEfecto(){
 		if(efecto>=18 && efecto<25){
 			return "chute directo";
 		}

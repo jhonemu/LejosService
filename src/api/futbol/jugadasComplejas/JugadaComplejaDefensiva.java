@@ -23,7 +23,7 @@ public class JugadaComplejaDefensiva extends JugadaCompleja {
 		return "Jugada Defensiva";
 	}
 	
-	private String getComplejidad(){
+	public String getComplejidad(){
 		if (complejidad ==1){
 		return "jugada poco defensiva, numero de jugadas " + complejidad;
 		}

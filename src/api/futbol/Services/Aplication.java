@@ -15,6 +15,7 @@ public class Aplication extends Application {
 		 classes.add(api.futbol.Services.Conect.class);
 		 classes.add(api.futbol.Services.InfJugador.class);
 		 classes.add(api.futbol.Services.Primitivsjugadas.class);
+		 classes.add(api.futbol.Services.JugComplejas.class);
 		 return classes;
 	}
 }

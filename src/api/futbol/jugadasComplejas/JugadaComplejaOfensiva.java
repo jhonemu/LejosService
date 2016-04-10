@@ -21,7 +21,7 @@ public class JugadaComplejaOfensiva extends JugadaCompleja {
 	public String identificarJugada() {
 		return "Jugada Ofensiva";
 	}
-	private String getEfectividad(){
+	public String getEfectividad(){
 		if (efectividad ==1){
 		return "jugada poco efectiva, numero de jugadas " + efectividad;
 		}
