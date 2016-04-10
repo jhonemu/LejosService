@@ -9,7 +9,9 @@ import javax.ws.rs.core.MediaType;
 
 import api.futbol.JsonGestor.JsonJugadasComplejas;
 import api.futbol.jugadasComplejas.JugadaCompleja;
+import api.futbol.jugadasComplejas.JugadaComplejaDefensiva;
 import api.futbol.jugadasComplejas.JugadaComplejaOfensiva;
+import api.futbol.jugadasComplejas.JugadaComplejaTiroLibre;
 import api.futbol.jugadasPrimitivas.JugadaPrimitiva;
 import api.futbol.usuario.UsuarioAdministrador;
 
@@ -22,8 +24,10 @@ public class JugComplejas {
 	@Path("/lista")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String consultarjugadas(){
+	
 		
 		new JsonJugadasComplejas().Lee();
-		return "holi";
+		Integer i =new Integer(listaJugadasComplejas.size());
+		return i.toString() ;
 	}
 }

@@ -24,7 +24,10 @@ public class JugadaComplejaDefensiva extends JugadaCompleja {
 	}
 	
 	public String getComplejidad(){
-		if (complejidad ==1){
+		if(complejidad == 0){
+			return "yape";
+		}
+	else if (complejidad ==1){
 		return "jugada poco defensiva, numero de jugadas " + complejidad;
 		}
 		else if(complejidad ==  2){
