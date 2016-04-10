@@ -9,11 +9,6 @@ import javax.ws.rs.core.MediaType;
 
 import api.futbol.JsonGestor.JsonJugadasComplejas;
 import api.futbol.jugadasComplejas.JugadaCompleja;
-import api.futbol.jugadasComplejas.JugadaComplejaDefensiva;
-import api.futbol.jugadasComplejas.JugadaComplejaOfensiva;
-import api.futbol.jugadasComplejas.JugadaComplejaTiroLibre;
-import api.futbol.jugadasPrimitivas.JugadaPrimitiva;
-import api.futbol.usuario.UsuarioAdministrador;
 
 
 @Path("/jcomplejas")
