@@ -3,7 +3,9 @@ package api.futbol.jugador;
 import java.util.ArrayList;
 
 import api.futbol.jugadasComplejas.JugadaCompleja;
+
 public abstract class Jugador {
+	
 	private String nombre;
 	private final String posicion;
 	private ArrayList<JugadaCompleja> listaJugadas;

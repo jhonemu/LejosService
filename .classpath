@@ -24,5 +24,26 @@
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jersey-servlet-1.19.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jettison-1.1.jar"/>
 	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jsr311-api-1.1.1.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcel-src.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bcel.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bluecove-gpl-src.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bluecove-gpl.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bluecove-src.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/bluecove.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/charting-src.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/charting.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-cli-src.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/commons-cli.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jcommon-src.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jcommon.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jfreechart-src.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jfreechart.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jtools-src.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/jtools.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pccomm-src.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pccomm.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pctools-src.zip"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/pctools.jar"/>
+	<classpathentry kind="lib" path="WebContent/WEB-INF/lib/stax-api-1.0.1.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
