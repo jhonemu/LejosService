@@ -11,6 +11,8 @@ import api.futbol.jugadasPrimitivas.Atras;
 import api.futbol.jugadasPrimitivas.Chutar;
 import api.futbol.jugadasPrimitivas.Derecha;
 import api.futbol.jugadasPrimitivas.Izquierda;
+import lejos.nxt.remote.NXTCommand;
+import lejos.pc.comm.NXTCommandConnector;
 
 @Path("/jprimitivas")
 public class Primitivsjugadas {
@@ -26,12 +28,23 @@ public class Primitivsjugadas {
 	@GET
 	@Path("/jugada")
 	@Produces(MediaType.TEXT_PLAIN)
-	public String infjugada(@QueryParam("jugada")String jugada,@QueryParam("cont")int cont){
-		
+	public String infjugada(@QueryParam("jugada")String jugada,@QueryParam("cont")String cont){
+		NXTCommandConnector.setNXTCommand(new NXTCommand(Conect.conn.getNXTComm()));
 		if(jugada.equals("Trote")){
-			
+			if(Integer.valueOf(cont)%2 == 0){
+				trotar.Iniciar();
+			}
+			else{
+				trotar.Detener();
+			}
 		}
 		else if(jugada.equals("Correr")){
+			if(Integer.valueOf(cont)%2 == 0){
+				correr.Iniciar();
+			}
+			else{
+				correr.Detener();
+			}
 			
 		}
 		else if(jugada.equals("Izquierda")){
