@@ -91,7 +91,7 @@ public class JsonJugadasComplejas {
 						JSONArray jpri = (JSONArray) aux.get("Jugadas Primitivas");
 						nombre =(String) aux.get("Nombre");
 						fecha = (String) aux.get("Fecha");
-						new JsonUsuario().Lee();
+					
 						us = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(aux.get("Autor"));
 						LoginUsuario.listaUsuarios.clear();
 						explicacion = (String) aux.get("Explicacion");
@@ -137,7 +137,7 @@ public class JsonJugadasComplejas {
 						JSONArray jpri = (JSONArray) aux.get("Jugadas Primitivas");
 						nombre =(String) aux.get("Nombre");
 						fecha = (String) aux.get("Fecha");
-						new JsonUsuario().Lee();
+						
 						us = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(aux.get("Autor"));
 						LoginUsuario.listaUsuarios.clear();
 						explicacion = (String) aux.get("Explicacion");
@@ -183,7 +183,7 @@ public class JsonJugadasComplejas {
 						JSONArray jpri = (JSONArray) aux.get("Jugadas Primitivas");
 						nombre =(String) aux.get("Nombre");
 						fecha = (String) aux.get("Fecha");
-						new JsonUsuario().Lee();
+						
 						us = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(aux.get("Autor"));
 						LoginUsuario.listaUsuarios.clear();
 						explicacion = (String) aux.get("Explicacion");
@@ -222,200 +222,5 @@ public class JsonJugadasComplejas {
 			} catch (IOException | ParseException e) {
 				e.printStackTrace();
 			}
-		
-		/*JsonFactory jfactory = new JsonFactory();
-		try {
-			JsonParser jParser = jfactory.createJsonParser(new File("C:\\Users\\Public\\Documents\\JsonJugadasComplejas.json"));
-			jParser.nextToken();
-			while(jParser.getText() != null){
-				if(jParser.getText().equals("Jugadas Ofencivas")){
-					
-					jParser.nextToken();
-					jParser.nextToken();
-					String nombre = null;
-					String fech = null;
-					UsuarioAdministrador autor = null;
-					String explicacion = null;
-					ArrayList<JugadaPrimitiva> list = new ArrayList<>() ;
-					int i = 0;
-					while(jParser.nextToken() != JsonToken.START_ARRAY){
-						if(jParser.nextToken()!=JsonToken.START_ARRAY){
-							if(i == 0){
-								nombre = jParser.getText();
-								i++;
-							}else if (i==1){
-								fech = jParser.getText();
-								i++;
-							}else if(i==2){
-								new JsonUsuario().Lee();
-								autor = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(jParser.getText());
-
-								i++;
-							}else if(i ==3){
-								explicacion = jParser.getText();
-								i++;
-							}
-						}
-						else{
-							break;
-						}
-					}
-					while(jParser.nextToken() != JsonToken.END_ARRAY){
-						if(Primitivsjugadas.atras.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.atras);
-						}
-						else if(Primitivsjugadas.chutar.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.chutar);
-						}
-						else if(Primitivsjugadas.correr.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.correr);
-						}
-						else if(Primitivsjugadas.derecha.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.derecha);
-						}
-						else if(Primitivsjugadas.izquierda.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.izquierda);
-						}
-						else if(Primitivsjugadas.patear.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.patear);
-						}
-						else if(Primitivsjugadas.ratras.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.ratras);
-						}
-						else if(Primitivsjugadas.trotar.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.trotar);
-						}
-					}
-					JugComplejas.listaJugadasComplejas.add(new JugadaComplejaOfensiva(nombre,fech,autor,list,explicacion));
-				}
-				else if(jParser.getText().equals("Jugadas Defencivas")){
-					jParser.nextToken();
-					jParser.nextToken();
-					String nombre = null;
-					String fech = null;
-					UsuarioAdministrador autor = null;
-					String explicacion = null;
-					ArrayList<JugadaPrimitiva> list = new ArrayList<>() ;
-					int i = 0;
-					while(jParser.nextToken() != JsonToken.START_ARRAY){
-						if(jParser.nextToken()!=JsonToken.START_ARRAY){
-							if(i == 0){
-								nombre = jParser.getText();
-								i++;
-							}else if (i==1){
-								fech = jParser.getText();
-								i++;
-							}else if(i==2){
-								new JsonUsuario().Lee();
-								autor = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(jParser.getText());
-
-								i++;
-							}else if(i ==3){
-								explicacion = jParser.getText();
-								i++;
-							}
-						}
-						else{
-							break;
-						}
-					}
-					while(jParser.nextToken() != JsonToken.END_ARRAY){
-						if(Primitivsjugadas.atras.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.atras);
-						}
-						else if(Primitivsjugadas.chutar.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.chutar);
-						}
-						else if(Primitivsjugadas.correr.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.correr);
-						}
-						else if(Primitivsjugadas.derecha.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.derecha);
-						}
-						else if(Primitivsjugadas.izquierda.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.izquierda);
-						}
-						else if(Primitivsjugadas.patear.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.patear);
-						}
-						else if(Primitivsjugadas.ratras.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.ratras);
-						}
-						else if(Primitivsjugadas.trotar.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.trotar);
-						}
-					}
-					JugComplejas.listaJugadasComplejas.add(new JugadaComplejaDefensiva(nombre,fech,autor,list,explicacion));
-					
-					jParser.nextToken();
-				}
-
-				else if(jParser.getText().equals("Jugadas Tiro Libre")){
-					jParser.nextToken();
-					jParser.nextToken();
-					String nombre = null;
-					String fech = null;
-					UsuarioAdministrador autor = null;
-					String explicacion = null;
-					ArrayList<JugadaPrimitiva> list = new ArrayList<>() ;
-					int i = 0;
-					while(jParser.nextToken() != JsonToken.START_ARRAY){
-						if(jParser.nextToken()!=JsonToken.START_ARRAY){
-							if(i == 0){
-								nombre = jParser.getText();
-								i++;
-							}else if (i==1){
-								fech = jParser.getText();
-								i++;
-							}else if(i==2){
-								new JsonUsuario().Lee();
-								autor = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(jParser.getText());
-
-								i++;
-							}else if(i ==3){
-								explicacion = jParser.getText();
-								i++;
-							}
-						}
-						else{
-							break;
-						}
-					}
-					while(jParser.nextToken() != JsonToken.END_ARRAY){
-						if(Primitivsjugadas.atras.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.atras);
-						}
-						else if(Primitivsjugadas.chutar.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.chutar);
-						}
-						else if(Primitivsjugadas.correr.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.correr);
-						}
-						else if(Primitivsjugadas.derecha.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.derecha);
-						}
-						else if(Primitivsjugadas.izquierda.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.izquierda);
-						}
-						else if(Primitivsjugadas.patear.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.patear);
-						}
-						else if(Primitivsjugadas.ratras.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.ratras);
-						}
-						else if(Primitivsjugadas.trotar.getNombre().equals(jParser.getText())){
-							list.add(Primitivsjugadas.trotar);
-						}
-					}
-					JugComplejas.listaJugadasComplejas.add(new JugadaComplejaTiroLibre(nombre,fech,autor,list,explicacion));
-				}
-
-				jParser.nextToken();
-			}
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}*/
 	}
 }

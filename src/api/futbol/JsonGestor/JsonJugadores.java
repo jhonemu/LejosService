@@ -1,12 +1,16 @@
 package api.futbol.JsonGestor;
 
 
+import java.io.FileNotFoundException;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
 import api.futbol.Services.InfJugador;
 import api.futbol.jugadasComplejas.JugadaCompleja;
@@ -61,6 +65,28 @@ public class JsonJugadores {
 	}
 	
 	public void Lee(){
-		
+		JSONParser parser = new JSONParser();
+		try {
+			Object obj =parser.parse(new FileReader("C:\\Users\\Public\\Documents\\JsonJugadores.json"));
+			JSONObject jsonObject = (JSONObject) obj;
+			JSONArray arqueros=(JSONArray) jsonObject.get("Arqueros");
+			JSONArray delanteros=(JSONArray) jsonObject.get("Delanteros");
+			if(arqueros.size()>0){
+				for(int i = 0;i<arqueros.size();i++){
+					
+				}
+			}
+			if(delanteros.size()>0){
+				for(int i = 0;i<arqueros.size();i++){
+					
+				}
+			}
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
 	}
 }
