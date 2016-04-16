@@ -11,7 +11,6 @@ import api.futbol.jugadasPrimitivas.Atras;
 import api.futbol.jugadasPrimitivas.Chutar;
 import api.futbol.jugadasPrimitivas.Derecha;
 import api.futbol.jugadasPrimitivas.Izquierda;
-import lejos.nxt.Motor;
 import lejos.nxt.remote.NXTCommand;
 import lejos.pc.comm.NXTCommandConnector;
 
@@ -34,8 +33,6 @@ public class Primitivsjugadas {
 		if(jugada.equals("Trote")){
 			if(Integer.valueOf(cont)%2 == 0){
 				trotar.Iniciar();
-				System.out.println( Motor.A.getRotationCount());
-				
 			}
 			else{
 				trotar.Detener();
