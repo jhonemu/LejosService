@@ -19,10 +19,12 @@ public class JugComplejas {
 	@Path("/lista")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String consultarjugadas(){
-	
 		
 		new JsonJugadasComplejas().Lee();
 		Integer i =new Integer(listaJugadasComplejas.size());
+		for(int j = 0;j<i;j++){
+			System.out.println(listaJugadasComplejas.get(j).getNombre());
+		}
 		return i.toString() ;
 	}
 }

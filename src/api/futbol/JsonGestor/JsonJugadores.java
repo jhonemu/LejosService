@@ -1,9 +1,14 @@
 package api.futbol.JsonGestor;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
+import org.codehaus.jackson.JsonFactory;
+import org.codehaus.jackson.JsonParseException;
+import org.codehaus.jackson.JsonParser;
+import org.codehaus.jackson.JsonToken;
 import org.codehaus.jettison.json.JSONArray;
 import org.codehaus.jettison.json.JSONException;
 import org.codehaus.jettison.json.JSONObject;
@@ -62,6 +67,46 @@ public class JsonJugadores {
 	}
 	
 	public void Lee(){
-		
+		JsonFactory jfactory = new JsonFactory();
+		try {
+			JsonParser jParser = jfactory.createJsonParser(new File("C:\\Users\\Public\\Documents\\JsonJugadores.json"));
+			
+			jParser.nextToken();
+			while(jParser.getText() != null){
+				if(jParser.getText().equals("Arqueros")){
+					int i = 0;
+					String nombre;
+					String posicion;
+					jParser.nextToken();
+					jParser.nextToken();
+					while(jParser.nextToken() != JsonToken.START_ARRAY){
+						if(jParser.nextToken()!=JsonToken.START_ARRAY){
+							if(i==0){
+								nombre = jParser.getText();
+								i++;
+								System.out.println(nombre);
+							}
+							else if(i ==1){
+								posicion = jParser.getText();
+								i++;
+								System.out.println(posicion);
+							}
+						
+						}
+					}
+					System.out.println(jParser.getText());
+				}
+				else if(jParser.getText().equals("Delanteros")){
+					
+				}
+				jParser.nextToken();
+			}
+		} catch (JsonParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 }
