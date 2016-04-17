@@ -21,8 +21,16 @@ public class InfJugador {
 	@Produces(MediaType.TEXT_PLAIN)
 	public String consultar(){
 	
-		
-		return "holi";
+			
+		 	new JsonJugadores().Lee();
+		Integer a = listaJugadores.size();
+		for(int i = 0 ;i<listaJugadores.size();i++){
+			System.out.println( listaJugadores.get(i).getNombre());
+			System.out.println(listaJugadores.get(i).getPosicion());
+			System.out.println(listaJugadores.get(i).getListaJugadas());
+			
+		}
+		return a.toString();
 	}
 
 }

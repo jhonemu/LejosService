@@ -13,6 +13,7 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import api.futbol.Services.InfJugador;
+import api.futbol.Services.JugComplejas;
 import api.futbol.jugadasComplejas.JugadaCompleja;
 import api.futbol.jugador.Arquero;
 import api.futbol.jugador.Delantero;
@@ -73,14 +74,58 @@ public class JsonJugadores {
 			JSONArray delanteros=(JSONArray) jsonObject.get("Delanteros");
 			if(arqueros.size()>0){
 				for(int i = 0;i<arqueros.size();i++){
-					
+					String nombre;
+					String posicion;
+					String tiemposingol;
+					String dorsal;
+					ArrayList<JugadaCompleja> list = new ArrayList<>();
+					JSONObject aux = (JSONObject) arqueros.get(i);
+					nombre = (String) aux.get("Nombre");
+					posicion = (String) aux.get("Posicion");
+					tiemposingol = (String) aux.get("Tiempo Sin gol");
+					dorsal = (String) aux.get("Dorsal");
+					JSONArray jcom = (JSONArray) aux.get("Jugadas Complejas");
+					new JsonJugadasComplejas().Lee();
+					for(int j=0;j<jcom.size();j++){
+						JSONObject aux2 = (JSONObject) jcom.get(j);
+						for(int k =0;k<JugComplejas.listaJugadasComplejas.size();k++){
+							if(JugComplejas.listaJugadasComplejas.get(k).getNombre().equals(aux2.get("Jugada"))){
+								list.add(JugComplejas.listaJugadasComplejas.get(k));
+							}
+						}
+					}
+					JugComplejas.listaJugadasComplejas.clear();
+					InfJugador.listaJugadores.add(new Arquero(nombre,posicion,Integer.valueOf(tiemposingol),Byte.valueOf(dorsal),list));
 				}
 			}
 			if(delanteros.size()>0){
-				for(int i = 0;i<arqueros.size();i++){
-					
+				for(int i = 0;i<delanteros.size();i++){
+					String nombre;
+					String posicion;
+					String golesmarcados;
+					String dorsal;
+					ArrayList<JugadaCompleja> list = new ArrayList<>();
+					JSONObject aux = (JSONObject) delanteros.get(i);
+					nombre = (String) aux.get("Nombre");
+					posicion = (String) aux.get("Posicion");
+					golesmarcados = (String) aux.get("Goles Marcados");
+					dorsal = (String) aux.get("Dorsal");
+					JSONArray jcom = (JSONArray) aux.get("Jugadas Complejas");
+					new JsonJugadasComplejas().Lee();
+					for(int j=0;j<jcom.size();j++){
+						JSONObject aux2 = (JSONObject) jcom.get(j);
+						for(int k =0;k<JugComplejas.listaJugadasComplejas.size();k++){
+							if(JugComplejas.listaJugadasComplejas.get(k).getNombre().equals(aux2.get("Jugada"))){
+								list.add(JugComplejas.listaJugadasComplejas.get(k));
+							}
+						}
+					}
+					JugComplejas.listaJugadasComplejas.clear();
+					InfJugador.listaJugadores.add(new Delantero(nombre,posicion,Short.valueOf(golesmarcados),Byte.valueOf(dorsal),list));
 				}
 			}
+			
+	
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
 		} catch (IOException e) {

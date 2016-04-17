@@ -91,7 +91,7 @@ public class JsonJugadasComplejas {
 						JSONArray jpri = (JSONArray) aux.get("Jugadas Primitivas");
 						nombre =(String) aux.get("Nombre");
 						fecha = (String) aux.get("Fecha");
-					
+						new JsonUsuario().Lee();
 						us = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(aux.get("Autor"));
 						LoginUsuario.listaUsuarios.clear();
 						explicacion = (String) aux.get("Explicacion");
@@ -137,7 +137,7 @@ public class JsonJugadasComplejas {
 						JSONArray jpri = (JSONArray) aux.get("Jugadas Primitivas");
 						nombre =(String) aux.get("Nombre");
 						fecha = (String) aux.get("Fecha");
-						
+						new JsonUsuario().Lee();
 						us = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(aux.get("Autor"));
 						LoginUsuario.listaUsuarios.clear();
 						explicacion = (String) aux.get("Explicacion");
@@ -183,7 +183,7 @@ public class JsonJugadasComplejas {
 						JSONArray jpri = (JSONArray) aux.get("Jugadas Primitivas");
 						nombre =(String) aux.get("Nombre");
 						fecha = (String) aux.get("Fecha");
-						
+						new JsonUsuario().Lee();
 						us = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(aux.get("Autor"));
 						LoginUsuario.listaUsuarios.clear();
 						explicacion = (String) aux.get("Explicacion");

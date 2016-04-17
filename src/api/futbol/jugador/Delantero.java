@@ -24,10 +24,12 @@ public class Delantero extends Jugador {
 	public void registrarGol(){
 		this.golesMarcados++;
 	}
-	public byte getDorsal(){
-		return dorsal;
+	public String getDorsal(){
+		Byte a = dorsal;
+		return a.toString();
 	}
-	public short getGolesMarcados(){
-		return golesMarcados;
+	public String getGolesMarcados(){
+		Short a = golesMarcados;
+		return a.toString();
 	}
 }

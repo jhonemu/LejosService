@@ -28,10 +28,12 @@ public class Arquero extends Jugador {
 	public void registrarTiempoGol(int tiempo){
 		this.TiempoSinGoles = tiempo;
 	}
-	public int getTiempoSinGoles(){
-		return TiempoSinGoles;
+	public String getTiempoSinGoles(){
+		Integer a = TiempoSinGoles;
+		return a.toString();
 	}
-	public byte getDorsal(){
-		return dorsal;
+	public String getDorsal(){
+		Byte a = dorsal;
+		return a.toString();
 	}
 }
