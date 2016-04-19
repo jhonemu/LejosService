@@ -9,6 +9,7 @@ public class Adelante extends JugadaPrimitiva{
 	}
 	public  void Iniciar(){
 		Motor.A.setSpeed(potencia);
+		Motor.C.setSpeed(potencia);
 		Motor.A.forward();
 		Motor.C.forward();
 	}

@@ -18,8 +18,8 @@ import lejos.pc.comm.NXTCommandConnector;
 public class Primitivsjugadas {
 	public static Adelante trotar = new Adelante("Trotar",360);
 	public static Adelante correr = new Adelante("Correr",720);
-	public static Izquierda izquierda = new Izquierda("Girar a la izquierda",720);
-	public static Derecha derecha = new Derecha("Girar a la derecha",720);
+	public static Izquierda izquierda = new Izquierda("Girar a la izquierda",120);
+	public static Derecha derecha = new Derecha("Girar a la derecha",120);
 	public static Chutar chutar = new Chutar("Chute",720,40);
 	public static Chutar patear  = new Chutar("Patear",1440,40);
 	public static Atras atras = new Atras("Ir atras",720);
@@ -48,22 +48,57 @@ public class Primitivsjugadas {
 			
 		}
 		else if(jugada.equals("Izquierda")){
+			if(Integer.valueOf(cont)%2 == 0){
+				izquierda.Iniciar();
+			}
+			else{
+				izquierda.Detener();
+			}
 			
 		}
 		else if(jugada.equals("Derecha")){
+			if(Integer.valueOf(cont)%2 == 0){
+				derecha.Iniciar();
+			}
+			else{
+				derecha.Detener();
+			}
 			
 		}
 		else if(jugada.equals("Atras")){
+			if(Integer.valueOf(cont)%2 == 0){
+				atras.Iniciar();
+			}
+			else{
+				atras.Detener();
+			}
 			
 		}
 		else if(jugada.equals("Correr Atras")){
+			if(Integer.valueOf(cont)%2 == 0){
+				ratras.Iniciar();
+			}
+			else{
+				ratras.Detener();
+			}
 		
 		}
 		else if(jugada.equals("Chute")){
+			if(Integer.valueOf(cont)%2 == 0){
+				//correr.Iniciar();
+			}
+			else{
+				//correr.Detener();
+			}
 			
 		}
 		else if(jugada.equals("Patear")){
-			
+			if(Integer.valueOf(cont)%2 == 0){
+				//correr.Iniciar();
+			}
+			else{
+				//correr.Detener();
+			}
 		}
 		return "y";
 	}

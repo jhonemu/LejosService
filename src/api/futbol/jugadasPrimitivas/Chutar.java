@@ -10,4 +10,5 @@ public class Chutar extends JugadaPrimitiva {
 	public int getGradosChute(){
 		return gradosChute;
 	}
+	
 }
