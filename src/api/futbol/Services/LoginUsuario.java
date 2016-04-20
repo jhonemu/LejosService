@@ -54,6 +54,7 @@ public class LoginUsuario {
 	public String registro(@QueryParam("username") String username, @QueryParam("password") String password){
 		new JsonUsuario().Lee();
 		if(listaUsuarios.containsKey(username)){
+			listaUsuarios.clear();
 			return "El nombre de usuario ya esta en uso";
 		}
 		else{
@@ -61,6 +62,23 @@ public class LoginUsuario {
 			new JsonUsuario().Escribe();
 			listaUsuarios.clear();
 			return "Usuario registrado";
+		}
+	}
+	
+	@POST
+	@Path("/radmin")
+	@Consumes(MediaType.TEXT_PLAIN)
+	public String RegistroAdmin(@QueryParam("username") String username,@QueryParam("password") String password){
+		new JsonUsuario().Lee();
+		if(listaUsuarios.containsKey(username)){
+			listaUsuarios.clear();
+			return "El nombre de usuario ya esta en uso";
+		}
+		else{
+			listaUsuarios.put(username, new UsuarioAdministrador(username,password));
+			new JsonUsuario().Escribe();
+			listaUsuarios.clear();
+			return "Nuevo Administrador Registrado";
 		}
 	}
 }
