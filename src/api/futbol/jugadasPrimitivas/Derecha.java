@@ -21,9 +21,6 @@ public class Derecha extends JugadaPrimitiva{
 	public  void Detener(){
 		Motor.A.stop();
 		Motor.C.stop();
-		System.out.println(Motor.A.getTachoCount());
-		System.out.println(Motor.C.getTachoCount());
-		System.out.println(Motor.A.getRotationCount());
-		System.out.println(Motor.C.getRotationCount());
+	
 	}
 }

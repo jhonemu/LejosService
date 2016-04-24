@@ -18,12 +18,12 @@ import lejos.pc.comm.NXTCommandConnector;
 public class Primitivsjugadas {
 	public static Adelante trotar = new Adelante("Trotar",360);
 	public static Adelante correr = new Adelante("Correr",720);
-	public static Izquierda izquierda = new Izquierda("Girar a la izquierda",720);
-	public static Derecha derecha = new Derecha("Girar a la derecha",720);
+	public static Izquierda izquierda = new Izquierda("Girar a la izquierda",100);
+	public static Derecha derecha = new Derecha("Girar a la derecha",100);
 	public static Chutar chutar = new Chutar("Chute",720,40);
 	public static Chutar patear  = new Chutar("Patear",1440,40);
-	public static Atras atras = new Atras("Ir atras",720);
-	public static Atras ratras = new Atras("Correr atras",1440);
+	public static Atras atras = new Atras("Ir atras",360);
+	public static Atras ratras = new Atras("Correr atras",720);
 	
 	@GET
 	@Path("/jugada")
