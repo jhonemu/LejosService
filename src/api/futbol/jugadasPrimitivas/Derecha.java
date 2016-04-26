@@ -17,7 +17,7 @@ public class Derecha extends JugadaPrimitiva{
 		Motor.C.forward();
 		
 	}
-	@SuppressWarnings("deprecation")
+	
 	public  void Detener(){
 		Motor.A.stop();
 		Motor.C.stop();
