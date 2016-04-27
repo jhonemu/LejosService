@@ -29,8 +29,9 @@ public class LoginUsuario {
 	
 			if(listaUsuarios.get(username).getClave().equals(password)){
 				if(listaUsuarios.get(username) instanceof UsuarioAdministrador){
+					String s =listaUsuarios.get(username).getNombre();
 					listaUsuarios.clear();
-					return "Usuario Administrador";
+					return s;
 				}
 				else{
 					listaUsuarios.clear();
