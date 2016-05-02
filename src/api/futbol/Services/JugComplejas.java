@@ -10,7 +10,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
-
+import javax.ws.rs.DELETE;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -42,7 +42,8 @@ public class JugComplejas {
 			names.add(aux);
 		}
 		obj.put("Jugadas", names);
-		return obj.toJSONString();
+		listaJugadasComplejas.clear();
+		return obj.toString();
 		
 	}
 	
@@ -52,8 +53,18 @@ public class JugComplejas {
 	public String crear(@QueryParam("tipo")String tipo,@QueryParam("nombre")String nombre,@QueryParam("fecha")String fecha,@QueryParam("autor")String autor,@QueryParam("jugada")String jugada,@QueryParam("jugada1")String jugada1,@QueryParam("jugada2")String jugada2,@QueryParam("jugada3")String jugada3,@QueryParam("jugada4")String jugada4,@QueryParam("jugada5")String jugada5,@QueryParam("jugada6")String jugada6,@QueryParam("jugada7")String jugada7,@QueryParam("jugada8")String jugada8,@QueryParam("jugada9")String jugada9,@QueryParam("explicacion")String explicacion){
 		ArrayList<String> aux = new ArrayList<>();
 		ArrayList<JugadaPrimitiva> list = new ArrayList<>();
-		
-		System.out.println(LoginUsuario.listaUsuarios);
+		new JsonJugadasComplejas().Lee();
+		String estado = null;
+		for (int i = 0;i<listaJugadasComplejas.size();i++){
+			if(listaJugadasComplejas.get(i).getNombre().equals(nombre)){
+				estado = "ya existe";
+				break;
+			}
+			else{
+				estado = "no existe";
+			}
+		}
+		if(estado.equals("no existe")){
 		aux.add(jugada);
 		aux.add(jugada1);
 		aux.add(jugada2);
@@ -96,10 +107,30 @@ public class JugComplejas {
 			new JsonUsuario().Lee();
 			listaJugadasComplejas.add(new JugadaComplejaTiroLibre(nombre,fecha,(UsuarioAdministrador) LoginUsuario.listaUsuarios.get(autor),list,explicacion));
 		}
-		new JsonJugadasComplejas().Lee();
+		
+	
 		new JsonJugadasComplejas().Escribe();
 		LoginUsuario.listaUsuarios.clear();
 		listaJugadasComplejas.clear();
-		return"Jugada creada con exito";
+		return"Jugada creada con exito";}
+		else{
+			listaJugadasComplejas.clear();
+			return "La Jugada ya existe";
+		}
+	}
+	@DELETE
+	@Path("/eliminar")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String eliminar(@QueryParam("nombre")String jugada){
+		new JsonJugadasComplejas().Lee();
+	
+		for(int i = 0 ;i< listaJugadasComplejas.size();i++){
+			if(listaJugadasComplejas.get(i).getNombre().equals(jugada)){
+				listaJugadasComplejas.remove(i);
+			}
+		}
+		new JsonJugadasComplejas().Escribe();
+		listaJugadasComplejas.clear();
+		return "jugada eliminada";
 	}
 }				
