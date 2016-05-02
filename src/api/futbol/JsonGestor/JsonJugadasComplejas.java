@@ -11,6 +11,8 @@ import org.json.simple.JSONObject;
 
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
+
+import api.futbol.Services.Carga;
 import api.futbol.Services.JugComplejas;
 import api.futbol.Services.LoginUsuario;
 import api.futbol.Services.Primitivsjugadas;
@@ -28,34 +30,34 @@ public class JsonJugadasComplejas {
 		JSONArray defencivas = new JSONArray();
 		JSONArray tirolibre = new JSONArray();
 
-		for (int i = 0;i<JugComplejas.listaJugadasComplejas.size();i++){
+		for (int i = 0;i<Carga.listaJugadasComplejas.size();i++){
 			JSONObject ob = new JSONObject();
 
 			JSONArray aux = new JSONArray();
 			ArrayList<JugadaPrimitiva> Jugadap = new ArrayList<>();
-			ob.put("Nombre", JugComplejas.listaJugadasComplejas.get(i).getNombre());
-			ob.put("Fecha", JugComplejas.listaJugadasComplejas.get(i).getfechaCreacion());
-			ob.put("Autor", JugComplejas.listaJugadasComplejas.get(i).getAutor().getNombre());
-			ob.put("Explicacion",JugComplejas.listaJugadasComplejas.get(i).getExplicacion());
-			Jugadap = JugComplejas.listaJugadasComplejas.get(i).getJugada();
+			ob.put("Nombre", Carga.listaJugadasComplejas.get(i).getNombre());
+			ob.put("Fecha", Carga.listaJugadasComplejas.get(i).getfechaCreacion());
+			ob.put("Autor", Carga.listaJugadasComplejas.get(i).getAutor().getNombre());
+			ob.put("Explicacion",Carga.listaJugadasComplejas.get(i).getExplicacion());
+			Jugadap = Carga.listaJugadasComplejas.get(i).getJugada();
 			for(int j = 0;j<Jugadap.size();j++){
 				JSONObject at = new JSONObject();
 				at.put("nombre", Jugadap.get(j).getNombre());
 				aux.add(at);
 			}
 			ob.put("Jugadas Primitivas", aux);
-			if(JugComplejas.listaJugadasComplejas.get(i) instanceof JugadaComplejaOfensiva){
-				String ef = ((JugadaComplejaOfensiva) JugComplejas.listaJugadasComplejas.get(i)).getEfectividad();
+			if(Carga.listaJugadasComplejas.get(i) instanceof JugadaComplejaOfensiva){
+				String ef = ((JugadaComplejaOfensiva) Carga.listaJugadasComplejas.get(i)).getEfectividad();
 				ob.put("Efectividad", ef);
 				ofencivas.add(ob);
 			}
-			else if(JugComplejas.listaJugadasComplejas.get(i) instanceof JugadaComplejaDefensiva){
-				ob.put("Complejidad", (((JugadaComplejaDefensiva) JugComplejas.listaJugadasComplejas.get(i)).getComplejidad()));
+			else if(Carga.listaJugadasComplejas.get(i) instanceof JugadaComplejaDefensiva){
+				ob.put("Complejidad", (((JugadaComplejaDefensiva) Carga.listaJugadasComplejas.get(i)).getComplejidad()));
 				defencivas.add(ob);
 			}
-			else if(JugComplejas.listaJugadasComplejas.get(i) instanceof JugadaComplejaTiroLibre){
-				ob.put("Complejidad", (((JugadaComplejaTiroLibre) JugComplejas.listaJugadasComplejas.get(i)).getEfecto()));
-				ob.put("Complejidad", (((JugadaComplejaTiroLibre) JugComplejas.listaJugadasComplejas.get(i)).getPotenciachute()));
+			else if(Carga.listaJugadasComplejas.get(i) instanceof JugadaComplejaTiroLibre){
+				ob.put("Complejidad", (((JugadaComplejaTiroLibre) Carga.listaJugadasComplejas.get(i)).getEfecto()));
+				ob.put("Complejidad", (((JugadaComplejaTiroLibre) Carga.listaJugadasComplejas.get(i)).getPotenciachute()));
 				tirolibre.add(ob);
 			}
 		}
@@ -91,9 +93,9 @@ public class JsonJugadasComplejas {
 						JSONArray jpri = (JSONArray) aux.get("Jugadas Primitivas");
 						nombre =(String) aux.get("Nombre");
 						fecha = (String) aux.get("Fecha");
-						new JsonUsuario().Lee();
-						us = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(aux.get("Autor"));
-						LoginUsuario.listaUsuarios.clear();
+						//new JsonUsuario().Lee();
+						us = (UsuarioAdministrador) Carga.listaUsuarios.get(aux.get("Autor"));
+						//Carga.listaUsuarios.clear();
 						explicacion = (String) aux.get("Explicacion");
 						ArrayList<JugadaPrimitiva> list = new ArrayList<>();
 						
@@ -124,7 +126,7 @@ public class JsonJugadasComplejas {
 								list.add(Primitivsjugadas.trotar);
 							}
 						}
-						JugComplejas.listaJugadasComplejas.add(new JugadaComplejaOfensiva(nombre,fecha,us,list,explicacion));
+						Carga.listaJugadasComplejas.add(new JugadaComplejaOfensiva(nombre,fecha,us,list,explicacion));
 					}
 				}
 				if(jdf.size()>0){
@@ -137,9 +139,9 @@ public class JsonJugadasComplejas {
 						JSONArray jpri = (JSONArray) aux.get("Jugadas Primitivas");
 						nombre =(String) aux.get("Nombre");
 						fecha = (String) aux.get("Fecha");
-						new JsonUsuario().Lee();
-						us = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(aux.get("Autor"));
-						LoginUsuario.listaUsuarios.clear();
+						//new JsonUsuario().Lee();
+						us = (UsuarioAdministrador) Carga.listaUsuarios.get(aux.get("Autor"));
+						//LoginUsuario.listaUsuarios.clear();
 						explicacion = (String) aux.get("Explicacion");
 						ArrayList<JugadaPrimitiva> list = new ArrayList<>();
 						
@@ -170,7 +172,7 @@ public class JsonJugadasComplejas {
 								list.add(Primitivsjugadas.trotar);
 							}
 						}
-						JugComplejas.listaJugadasComplejas.add(new JugadaComplejaDefensiva(nombre,fecha,us,list,explicacion));
+						Carga.listaJugadasComplejas.add(new JugadaComplejaDefensiva(nombre,fecha,us,list,explicacion));
 					}
 				}
 				if(jtl.size()>0){
@@ -183,9 +185,9 @@ public class JsonJugadasComplejas {
 						JSONArray jpri = (JSONArray) aux.get("Jugadas Primitivas");
 						nombre =(String) aux.get("Nombre");
 						fecha = (String) aux.get("Fecha");
-						new JsonUsuario().Lee();
-						us = (UsuarioAdministrador) LoginUsuario.listaUsuarios.get(aux.get("Autor"));
-						LoginUsuario.listaUsuarios.clear();
+						//new JsonUsuario().Lee();
+						us = (UsuarioAdministrador) Carga.listaUsuarios.get(aux.get("Autor"));
+						//LoginUsuario.listaUsuarios.clear();
 						explicacion = (String) aux.get("Explicacion");
 						ArrayList<JugadaPrimitiva> list = new ArrayList<>();
 						
@@ -216,7 +218,7 @@ public class JsonJugadasComplejas {
 								list.add(Primitivsjugadas.trotar);
 							}
 						}
-						JugComplejas.listaJugadasComplejas.add(new JugadaComplejaTiroLibre(nombre,fecha,us,list,explicacion));
+						Carga.listaJugadasComplejas.add(new JugadaComplejaTiroLibre(nombre,fecha,us,list,explicacion));
 					}
 				}
 			} catch (IOException | ParseException e) {

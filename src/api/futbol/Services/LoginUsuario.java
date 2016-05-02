@@ -19,32 +19,31 @@ import api.futbol.usuario.UsuarioGeneral;
 @Path("/LoginUs")
 
 public class LoginUsuario {
-	public static Hashtable<String, Usuario> listaUsuarios = new Hashtable<>();
 	@GET
 	@Path("/confirmar")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String Confirmar(@QueryParam("username") String username, @QueryParam("password") String password) {
-		new JsonUsuario().Lee();
-		if(listaUsuarios.containsKey(username)){
+		
+		if(Carga.listaUsuarios.containsKey(username)){
 	
-			if(listaUsuarios.get(username).getClave().equals(password)){
-				if(listaUsuarios.get(username) instanceof UsuarioAdministrador){
-					String s =listaUsuarios.get(username).getNombre();
-					listaUsuarios.clear();
+			if(Carga.listaUsuarios.get(username).getClave().equals(password)){
+				if(Carga.listaUsuarios.get(username) instanceof UsuarioAdministrador){
+					String s =Carga.listaUsuarios.get(username).getNombre();
+					//listaUsuarios.clear();
 					return s;
 				}
 				else{
-					listaUsuarios.clear();
+					//listaUsuarios.clear();
 					return  "Usuario General";
 				}
 			}
 			else{
-				listaUsuarios.clear();
+				//listaUsuarios.clear();
 				return "Usuario no valido";
 			}
 		}
 		else{
-			listaUsuarios.clear();
+			//listaUsuarios.clear();
 			return "Usuario no valido";
 		}
 	}
@@ -53,15 +52,15 @@ public class LoginUsuario {
 	@Path("/registro")
 	@Consumes(MediaType.TEXT_PLAIN)
 	public String registro(@QueryParam("username") String username, @QueryParam("password") String password){
-		new JsonUsuario().Lee();
-		if(listaUsuarios.containsKey(username)){
-			listaUsuarios.clear();
+		
+		if(Carga.listaUsuarios.containsKey(username)){
+			//listaUsuarios.clear();
 			return "El nombre de usuario ya esta en uso";
 		}
 		else{
-			listaUsuarios.put(username, new UsuarioGeneral(username,password));
+			Carga.listaUsuarios.put(username, new UsuarioGeneral(username,password));
 			new JsonUsuario().Escribe();
-			listaUsuarios.clear();
+			//listaUsuarios.clear();
 			return "Usuario registrado";
 		}
 	}
@@ -70,15 +69,15 @@ public class LoginUsuario {
 	@Path("/radmin")
 	@Consumes(MediaType.TEXT_PLAIN)
 	public String RegistroAdmin(@QueryParam("username") String username,@QueryParam("password") String password){
-		new JsonUsuario().Lee();
-		if(listaUsuarios.containsKey(username)){
-			listaUsuarios.clear();
+		
+		if(Carga.listaUsuarios.containsKey(username)){
+			//listaUsuarios.clear();
 			return "El nombre de usuario ya esta en uso";
 		}
 		else{
-			listaUsuarios.put(username, new UsuarioAdministrador(username,password));
+			Carga.listaUsuarios.put(username, new UsuarioAdministrador(username,password));
 			new JsonUsuario().Escribe();
-			listaUsuarios.clear();
+		//listaUsuarios.clear();
 			return "Nuevo Administrador Registrado";
 		}
 	}

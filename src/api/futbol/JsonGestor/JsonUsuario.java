@@ -1,6 +1,8 @@
 package api.futbol.JsonGestor;
 
 
+import api.futbol.Services.Carga;
+import api.futbol.Services.Conect;
 import api.futbol.Services.LoginUsuario;
 import api.futbol.usuario.Usuario;
 import api.futbol.usuario.UsuarioAdministrador;
@@ -28,7 +30,7 @@ public class JsonUsuario {
 		JSONObject Object = new JSONObject();
 		JSONArray general = new JSONArray();
 		JSONArray administradores = new JSONArray();
-		Enumeration<Usuario> usuarios = LoginUsuario.listaUsuarios.elements();
+		Enumeration<Usuario> usuarios = Carga.listaUsuarios.elements();
 		while(usuarios.hasMoreElements()){
 			JSONObject Ob = new JSONObject();
 			usuario = usuarios.nextElement();
@@ -87,7 +89,7 @@ public class JsonUsuario {
 							else{
 								clave = jParser.getText();
 								i++;
-								LoginUsuario.listaUsuarios.put(usuario, new UsuarioAdministrador(usuario,clave));
+								Carga.listaUsuarios.put(usuario, new UsuarioAdministrador(usuario,clave));
 							}
 						}
 					}
@@ -106,7 +108,7 @@ public class JsonUsuario {
 							else{
 								clave = jParser.getText();
 								i++;
-								LoginUsuario.listaUsuarios.put(usuario, new UsuarioGeneral(usuario,clave));
+								Carga.listaUsuarios.put(usuario, new UsuarioGeneral(usuario,clave));
 							}
 						}
 					}

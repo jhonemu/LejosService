@@ -13,22 +13,13 @@ import api.futbol.jugador.Jugador;
 
 @Path("/jugador")
 public class InfJugador {
-	public static ArrayList<Jugador> listaJugadores = new ArrayList<>();
+	
 	@GET
 	@Path("/consulta")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String consultar(){
 	
-			
-		 	new JsonJugadores().Lee();
-		Integer a = listaJugadores.size();
-		for(int i = 0 ;i<listaJugadores.size();i++){
-			System.out.println( listaJugadores.get(i).getNombre());
-			System.out.println(listaJugadores.get(i).getPosicion());
-			System.out.println(listaJugadores.get(i).getListaJugadas());
-			
-		}
-		return a.toString();
+		return "holi";
 	}
 
 }

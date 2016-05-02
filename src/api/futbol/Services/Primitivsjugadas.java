@@ -20,8 +20,8 @@ public class Primitivsjugadas {
 	public static Adelante correr = new Adelante("Correr",720);
 	public static Izquierda izquierda = new Izquierda("Girar a la izquierda",100);
 	public static Derecha derecha = new Derecha("Girar a la derecha",100);
-	public static Chutar chutar = new Chutar("Chute",720,40);
-	public static Chutar patear  = new Chutar("Patear",1440,40);
+	public static Chutar chutar = new Chutar("Chute",720,10);
+	public static Chutar patear  = new Chutar("Patear",1440,10);
 	public static Atras atras = new Atras("Ir atras",360);
 	public static Atras ratras = new Atras("Correr atras",720);
 	
@@ -84,21 +84,11 @@ public class Primitivsjugadas {
 		
 		}
 		else if(jugada.equals("Chute")){
-			if(Integer.valueOf(cont)%2 == 0){
-				//correr.Iniciar();
-			}
-			else{
-				//correr.Detener();
-			}
+			chutar.Iniciar();
 			
 		}
 		else if(jugada.equals("Patear")){
-			if(Integer.valueOf(cont)%2 == 0){
-				//correr.Iniciar();
-			}
-			else{
-				//correr.Detener();
-			}
+			patear.Iniciar();
 		}
 		return "y";
 	}
