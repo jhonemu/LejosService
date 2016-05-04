@@ -2,8 +2,7 @@ package api.futbol.JsonGestor;
 
 
 import api.futbol.Services.Carga;
-import api.futbol.Services.Conect;
-import api.futbol.Services.LoginUsuario;
+
 import api.futbol.usuario.Usuario;
 import api.futbol.usuario.UsuarioAdministrador;
 import api.futbol.usuario.UsuarioGeneral;

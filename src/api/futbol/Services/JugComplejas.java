@@ -15,8 +15,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import api.futbol.JsonGestor.JsonJugadasComplejas;
-import api.futbol.JsonGestor.JsonUsuario;
-import api.futbol.jugadasComplejas.JugadaCompleja;
+
 import api.futbol.jugadasComplejas.JugadaComplejaDefensiva;
 import api.futbol.jugadasComplejas.JugadaComplejaOfensiva;
 import api.futbol.jugadasComplejas.JugadaComplejaTiroLibre;
@@ -131,5 +130,24 @@ public class JugComplejas {
 		new JsonJugadasComplejas().Escribe();
 		//listaJugadasComplejas.clear();
 		return "jugada eliminada";
+	}
+	@SuppressWarnings("unchecked")
+	@GET
+	@Path("/explicacion")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String exp(@QueryParam("nombre")String nombre){
+		JSONObject a = new JSONObject();
+		for(int i = 0;i<Carga.listaJugadasComplejas.size();i++){
+			
+			if(nombre.equals(Carga.listaJugadasComplejas.get(i).getNombre())){
+				a.put("nombre",Carga.listaJugadasComplejas.get(i).getNombre());
+				a.put("fecha", Carga.listaJugadasComplejas.get(i).getfechaCreacion());
+				a.put("auto", Carga.listaJugadasComplejas.get(i).getAutor().getNombre());
+				a.put("expli",Carga.listaJugadasComplejas.get(i).getExplicacion());
+				
+				break;
+			}
+		}
+		return a.toString();
 	}
 }				

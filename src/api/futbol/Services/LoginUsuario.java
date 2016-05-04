@@ -1,6 +1,5 @@
 package api.futbol.Services;
 
-import java.util.Hashtable;
 
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
@@ -11,7 +10,7 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.MediaType;
 
 import api.futbol.JsonGestor.JsonUsuario;
-import api.futbol.usuario.Usuario;
+
 import api.futbol.usuario.UsuarioAdministrador;
 import api.futbol.usuario.UsuarioGeneral;
 

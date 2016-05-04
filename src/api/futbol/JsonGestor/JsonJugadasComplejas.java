@@ -13,8 +13,6 @@ import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import api.futbol.Services.Carga;
-import api.futbol.Services.JugComplejas;
-import api.futbol.Services.LoginUsuario;
 import api.futbol.Services.Primitivsjugadas;
 import api.futbol.jugadasComplejas.JugadaComplejaDefensiva;
 import api.futbol.jugadasComplejas.JugadaComplejaOfensiva;
