@@ -2,7 +2,7 @@ package api.futbol.jugadasComplejas;
 
 import java.util.ArrayList;
 
-import api.futbol.jugadasPrimitivas.Chutar;
+
 import api.futbol.jugadasPrimitivas.JugadaPrimitiva;
 import api.futbol.usuario.UsuarioAdministrador;
 

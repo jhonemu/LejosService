@@ -24,7 +24,6 @@ import api.futbol.jugadasComplejas.JugadaComplejaDefensiva;
 import api.futbol.jugadasComplejas.JugadaComplejaOfensiva;
 import api.futbol.jugadasComplejas.JugadaComplejaTiroLibre;
 import api.futbol.jugadasPrimitivas.JugadaPrimitiva;
-import api.futbol.jugador.Jugador;
 import api.futbol.usuario.UsuarioAdministrador;
 import lejos.nxt.Motor;
 import lejos.nxt.remote.NXTCommand;

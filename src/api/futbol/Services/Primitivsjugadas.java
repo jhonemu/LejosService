@@ -1,6 +1,6 @@
 package api.futbol.Services;
 
-import java.io.IOException;
+
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;

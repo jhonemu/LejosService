@@ -17,7 +17,7 @@ import org.json.simple.JSONObject;
 
 import api.futbol.JsonGestor.JsonJugadores;
 import api.futbol.jugadasComplejas.JugadaCompleja;
-import api.futbol.jugadasPrimitivas.JugadaPrimitiva;
+
 import api.futbol.jugador.Arquero;
 import api.futbol.jugador.Delantero;
 
