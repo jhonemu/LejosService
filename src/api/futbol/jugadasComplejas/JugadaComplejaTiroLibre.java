@@ -17,15 +17,7 @@ public class JugadaComplejaTiroLibre extends JugadaCompleja {
 	
 	public JugadaComplejaTiroLibre(String nombreJugada,String fechaCreacion,UsuarioAdministrador Autor,ArrayList<JugadaPrimitiva> jugada,String Explicacion){
 		super(nombreJugada,fechaCreacion,Autor,jugada,Explicacion);
-		JugadaPrimitiva y = super.getJugada().get(super.getJugada().size()-1);
-		if(y instanceof Chutar){
-			this.potenciachute=y.getPotencia();
-			this.efecto=((Chutar) y).getGradosChute();
-			this.descripcion = "La jugada " + nombreJugada +" es un "+ getPotenciachute() +", con un " +getEfecto()+ ", fue creada por " + Autor.getNombre() + ", en la fecha " + fechaCreacion;
-		}
-		else{
-			throw new ClassCastException();
-		}
+		
 	}
 	@Override
  	public String identificarJugada() {

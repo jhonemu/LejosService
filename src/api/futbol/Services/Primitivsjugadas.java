@@ -1,5 +1,7 @@
 package api.futbol.Services;
 
+import java.io.IOException;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
@@ -20,66 +22,78 @@ public class Primitivsjugadas {
 	public static Adelante correr = new Adelante("Correr",720);
 	public static Izquierda izquierda = new Izquierda("Girar a la izquierda",100);
 	public static Derecha derecha = new Derecha("Girar a la derecha",100);
-	public static Chutar chutar = new Chutar("Chute",720,10);
-	public static Chutar patear  = new Chutar("Patear",1440,10);
+	public static Chutar chutar = new Chutar("Chute",720,40);
+	public static Chutar patear  = new Chutar("Patear",1440,40);
 	public static Atras atras = new Atras("Ir atras",360);
 	public static Atras ratras = new Atras("Correr atras",720);
-	
+	public static Posicion pos = new Posicion();
 	@GET
 	@Path("/jugada")
 	@Produces(MediaType.TEXT_PLAIN)
 	public String infjugada(@QueryParam("jugada")String jugada,@QueryParam("cont")String cont){
 		NXTCommandConnector.setNXTCommand(new NXTCommand(Conect.conn.getNXTComm()));
+		
 		if(jugada.equals("Trote")){
 			if(Integer.valueOf(cont)%2 == 0){
-				trotar.Iniciar();
+				trotar.Iniciar(1);
+				
+				
 			}
 			else{
 				trotar.Detener();
+				return pos.calcular(1);
 			}
 		}
 		else if(jugada.equals("Correr")){
 			if(Integer.valueOf(cont)%2 == 0){
-				correr.Iniciar();
+				correr.Iniciar(1);
 			}
 			else{
 				correr.Detener();
+				return pos.calcular(1);
 			}
 			
 		}
 		else if(jugada.equals("Izquierda")){
+			
 			if(Integer.valueOf(cont)%2 == 0){
-				izquierda.Iniciar();
+				izquierda.Iniciar(1);
+				
 			}
 			else{
 				izquierda.Detener();
+				return pos.calcular(4);
 			}
 			
 		}
 		else if(jugada.equals("Derecha")){
 			if(Integer.valueOf(cont)%2 == 0){
-				derecha.Iniciar();
+				derecha.Iniciar(1);
 			}
 			else{
 				derecha.Detener();
+				return pos.calcular(3);
 			}
 			
 		}
 		else if(jugada.equals("Atras")){
 			if(Integer.valueOf(cont)%2 == 0){
-				atras.Iniciar();
+				atras.Iniciar(1);
 			}
 			else{
 				atras.Detener();
+				return pos.calcular(2);
 			}
 			
 		}
 		else if(jugada.equals("Correr Atras")){
+			
 			if(Integer.valueOf(cont)%2 == 0){
-				ratras.Iniciar();
+				ratras.Iniciar(1);
 			}
 			else{
 				ratras.Detener();
+				return pos.calcular(2);
 			}
 		
 		}

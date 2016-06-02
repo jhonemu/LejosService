@@ -14,8 +14,8 @@ public class Chutar extends JugadaPrimitiva {
 	}
 	public void Iniciar(){
 		Motor.B.setSpeed(potencia);
-		Motor.B.rotateTo(gradosChute);
 		Motor.B.rotateTo(gradosChute*-1);
+		Motor.B.rotateTo(0);
 	}
 	
 }

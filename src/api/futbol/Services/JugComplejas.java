@@ -1,5 +1,8 @@
 package api.futbol.Services;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -15,18 +18,108 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import api.futbol.JsonGestor.JsonJugadasComplejas;
-
+import api.futbol.JsonGestor.JsonJugadores;
+import api.futbol.jugadasComplejas.JugadaCompleja;
 import api.futbol.jugadasComplejas.JugadaComplejaDefensiva;
 import api.futbol.jugadasComplejas.JugadaComplejaOfensiva;
 import api.futbol.jugadasComplejas.JugadaComplejaTiroLibre;
 import api.futbol.jugadasPrimitivas.JugadaPrimitiva;
+import api.futbol.jugador.Jugador;
 import api.futbol.usuario.UsuarioAdministrador;
+import lejos.nxt.Motor;
+import lejos.nxt.remote.NXTCommand;
+import lejos.pc.comm.NXTCommandConnector;
 
 
 @Path("/jcomplejas")
 public class JugComplejas {
+	@GET
+	@Path("/agregar")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String agregar(@QueryParam("nombrejugada")String nombrejugada,@QueryParam("nombrejug")String nombrejug){
+		ArrayList<JugadaPrimitiva> list = new ArrayList<>();
+		for(int i=0;i<Carga.listaJugadasComplejas.size();i++){
+			if(nombrejugada.equals(Carga.listaJugadasComplejas.get(i).getNombre())){
+				
+				list = Carga.listaJugadasComplejas.get(i).getJugada();
+				if(nombrejug.equals("Trotar")){
+					list.add(Primitivsjugadas.trotar);
+					
+				}else if(nombrejug.equals("Correr")){
+					list.add(Primitivsjugadas.correr);
+				}else if(nombrejug.equals("Girar a la izquierda")){
+					list.add(Primitivsjugadas.izquierda);
+				}else if(nombrejug.equals("Girar a la derecha")){
+					list.add(Primitivsjugadas.derecha);
+				}else if(nombrejug.equals("Chute")){
+					list.add(Primitivsjugadas.chutar);
+				}else if(nombrejug.equals("Patear")){
+					list.add(Primitivsjugadas.patear);
+				}else if(nombrejug.equals("Ir atras")){
+					list.add(Primitivsjugadas.atras);
+				}else if(nombrejug.equals("Correr atras")){
+					list.add(Primitivsjugadas.ratras);
+				}
+				Carga.listaJugadasComplejas.get(i).setJugada(list);
+			}
+			
+		}
+		new JsonJugadasComplejas().Escribe();
+		return "Jugada Editada";
+	}
+	@GET
+	@Path("/quitar")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String quitar(@QueryParam("nombrejugada")String nombrejugada,@QueryParam("nombrejug")String nombrejug){
+		ArrayList<JugadaPrimitiva> list = new ArrayList<>();
+		for(int i=0;i<Carga.listaJugadasComplejas.size();i++){
+			if(nombrejugada.equals(Carga.listaJugadasComplejas.get(i).getNombre())){
+				
+				list = Carga.listaJugadasComplejas.get(i).getJugada();
+				for(int j =0 ;j<list.size();j++){
+					if(list.get(j).getNombre().equals(nombrejug)){
+						list.remove(j);
+					}
+				}
+				Carga.listaJugadasComplejas.get(i).setJugada(list);
+			}
+			
+		}
+		new JsonJugadasComplejas().Escribe();
+		return "Jugada Editada";
+	}
 	
-	
+	@GET
+	@Path("ejecutar")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String ejecutar(@QueryParam("nombre")String nombre,@QueryParam("nombrejug")String nombrejug){
+		NXTCommandConnector.setNXTCommand(new NXTCommand(Conect.conn.getNXTComm()));
+		for(int i = 0 ; i<Carga.listaJugadasComplejas.size();i++){
+			if(nombre.equals(Carga.listaJugadasComplejas.get(i).getNombre())){
+				Carga.listaJugadasComplejas.get(i).ejecutar();
+			}
+		}
+		try {
+			
+			BufferedWriter bw = new BufferedWriter(new FileWriter(Partido.fich,true));
+			bw.newLine();
+			bw.write(nombrejug + "," + nombre);
+			bw.close();
+		} catch (IOException e) {
+			
+			e.printStackTrace();
+		}
+		return Primitivsjugadas.pos.x.toString()+","+Primitivsjugadas.pos.y.toString();
+	}
+	@GET
+	@Path("parar")
+	@Produces(MediaType.TEXT_PLAIN)
+	public String parar(){
+		Motor.A.stop();
+		Motor.B.stop();
+		Motor.C.stop();
+		return Primitivsjugadas.pos.x.toString()+","+Primitivsjugadas.pos.y.toString();
+	}
 	@SuppressWarnings("unchecked")
 	@GET
 	@Path("/lista")
@@ -124,10 +217,25 @@ public class JugComplejas {
 		
 		for(int i = 0 ;i< Carga.listaJugadasComplejas.size();i++){
 			if(Carga.listaJugadasComplejas.get(i).getNombre().equals(jugada)){
+				if(Carga.listaJugadasComplejas.get(i).getUso() ==false){
 				Carga.listaJugadasComplejas.remove(i);
+				}else{
+					return "La jugada se encuentra en uso y no puede ser eliminada";
+				}
 			}
 		}
+		for ( int i =0; i<Carga.listaJugadores.size();i++){
+			
+			ArrayList <JugadaCompleja>  lista = Carga.listaJugadores.get(i).getListaJugadas();
+			for (int j = 0 ; j<lista.size();j++){
+				if(lista.get(j).getNombre().equals(jugada)){
+					lista.remove(j);
+				}
+			}
+			Carga.listaJugadores.get(i).setListaJugadas(lista);
+		}
 		new JsonJugadasComplejas().Escribe();
+		new JsonJugadores().Escribe();
 		//listaJugadasComplejas.clear();
 		return "jugada eliminada";
 	}
@@ -149,5 +257,24 @@ public class JugComplejas {
 			}
 		}
 		return a.toString();
+	}
+	@SuppressWarnings("unchecked")
+	@GET
+	@Path("/jugadas")
+	@Produces(MediaType.APPLICATION_JSON)
+	public String jugadas(@QueryParam("nombre")String nombre){
+		JSONObject obj = new JSONObject();
+		JSONArray lista = new JSONArray();
+		for (int i=0;i<Carga.listaJugadasComplejas.size();i++){
+			if(nombre.equals(Carga.listaJugadasComplejas.get(i).getNombre())){
+				for(int j =0;j<Carga.listaJugadasComplejas.get(i).getJugada().size();j++){
+					JSONObject aux = new JSONObject();
+					aux.put("jugada", Carga.listaJugadasComplejas.get(i).getJugada().get(j).getNombre());
+					lista.add(aux);
+				}
+			}
+		}
+		obj.put("jugada", lista);
+		return obj.toString();
 	}
 }				
